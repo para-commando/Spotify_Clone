@@ -1,4 +1,14 @@
 body{
-    background-color: black;
-    color: white;
+    /* background-color: black;
+    color: white; */
 }
+  
+.left{
+    width: 25vw;
+    /* border: 1px solid white; */
+}
+.right{
+    width: 75vw;
+    /* border: 1px solid white; */
+
+} 
