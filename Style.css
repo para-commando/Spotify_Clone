@@ -10,7 +10,7 @@ body{
   
 .left{
     width: 25vw;
-    padding:34px
+    padding:10px
     /* border: 1px solid white; */
 }
 .right{
@@ -18,9 +18,13 @@ body{
     /* border: 1px solid white; */
 
 } 
+.home{
+    padding:10px
+}
 .home ul li{
     display: flex;
     gap:15px;
     width: 14px;
     list-style: none;
+    padding:14px
 }
