@@ -51,11 +51,13 @@ body {
 
 .footer {
     display: flex;
-    font-size: 10px;
+    font-size: 12px;
     color: gray;
-    gap: 10px;
+    gap: 8px;
     position: absolute;
-    bottom: 0
+    bottom: 0;
+    padding:10px 5px;
+
 }
 
 .footer a {
@@ -87,18 +89,42 @@ body {
     padding: 16px
 }
 
-.spotifyPlaylists .card {
+.cardContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.card {
     padding: 10px;
     width: 200px;
     border-radius: 5px;
-    background-color: grey;
+    background-color: #252525;
+    position: relative;
 }
 
-.card > * {
+.card>* {
     padding-top: 3px;
 }
 
 .card img {
     width: 100%;
     object-fit: contain;
+}
+
+.play {
+    width: 28px;
+    height: 28px;
+    background-color: #1fdf64;
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 168px;
+    right: 17px;
+    opacity: 0;
+    transition: all 1s ease-out;
 }
