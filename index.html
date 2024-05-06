@@ -8,20 +8,117 @@
     <link rel="stylesheet" href="utility.css" />
   </head>
   <body>
-     <div class="container flex bg-black">
+    <div class="container flex bg-black">
       <div class="left">
-        <div class="home bg-grey rounded m-1">
+        <div class="home bg-grey rounded m-1 p-1">
           <div class="logo">
-            <img class='invert' src="logo.svg" alt="" />
+            <img class="invert" src="logo.svg" alt="logo" />
           </div>
           <ul>
-            <li><img class='invert' src="home.svg" alt="" /> Home</li>
-            <li><img class='invert' src="search.svg" alt="" /> Search</li>
+            <li><img class="invert" src="home.svg" alt="home" /> Home</li>
+            <li><img class="invert" src="search.svg" alt="search" /> Search</li>
           </ul>
         </div>
-        <div class="library bg-grey rounded m-1"></div>
+        <div class="library bg-grey rounded m-1 p-1">
+          <div class="heading">
+            <img class="invert" src="playlist.svg" alt="playlist" />
+            <h2>Your Library</h2>
+          </div>
+          <div class="footer">
+            <div>
+              <a href="https://www.spotify.com/in-en/legal/" id="">
+                <span data-encore-id="type">Legal</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://www.spotify.com/in-en/safetyandprivacy/" id="">
+                <span data-encore-id="type">Safety &amp; Privacy Center</span>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.spotify.com/in-en/legal/privacy-policy/"
+                id=""
+              >
+                <span data-encore-id="type">Privacy Policy</span>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.spotify.com/in-en/legal/cookies-policy/"
+                id=""
+              >
+                <span data-encore-id="type">Cookies</span>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.spotify.com/in-en/legal/privacy-policy/#s3"
+                id=""
+              >
+                <span data-encore-id="type">About Ads</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://www.spotify.com/in-en/accessibility/" id="">
+                <span data-encore-id="type">Accessibility</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="right border">dfd</div>
+      <div class="right bg-grey rounded">
+        <div class="header">
+          <div class="nav invert">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              color="#000000"
+              fill="none"
+            >
+              <path
+                d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              color="#000000"
+              fill="none"
+            >
+              <path
+                d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="buttons">
+            <button>Signup</button>
+            <button>Login</button>
+          </div>
+        </div>
+        <div class="spotifyPlaylists">
+          <h1>Spotify Playlists</h1>
+          <div class="cardContainer">
+            <div class="card border">
+              <img src="https://i.scdn.co/image/ab67616d00001e02d7eb20034ff1c7b7bb3629de" alt="">
+              <h2>Happy Hits!</h2>
+              <p>Hits to boost your mood and fill you with happiness!</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
