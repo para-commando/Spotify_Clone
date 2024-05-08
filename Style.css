@@ -173,12 +173,20 @@ body {
     position: absolute;
     bottom: 0;
     padding: 12px;
-    background-color: #1fdf64;
-    width: 100%;
+    background-color: #e0f5e8;
+    width: 90%;
 }
 
 .songbuttons {
     display: flex;
     gap: 16px;
     justify-content: center;
+}
+
+.songList ul{
+    padding:0 42px;
+    color: white;
+}
+.songList ul li{
+    list-style-type: decimal;
 }

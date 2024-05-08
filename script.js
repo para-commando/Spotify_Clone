@@ -1,19 +1,33 @@
 async function getAllSongs() {
-  let reponse = await fetch('http://127.0.0.1:3080/music/');
-  reponse = await reponse.text();
+  let response = await fetch('http://127.0.0.1:5500/music/');
+  response = await response.text();
   let div = document.createElement('div');
-  div.innerHTML = reponse;
+  div.innerHTML = response;
   let aTags = div.getElementsByTagName('a');
   let songsList = [];
   for (let index = 0; index < aTags?.length; index++) {
     const element = aTags[index];
     if (element.href.endsWith('.mp3')) {
-      songsList.push(element.href);
+      songsList.push(element.href.split("/music/")[1]);
     }
   }
-  console.log("🚀 ~ getAllSongs ~ songsList:", songsList)
-  return;
-
+  return songsList;
 }
-console.log(getAllSongs());
 
+async function main() {
+  const songs = await getAllSongs();
+
+  console.log('🚀 ~ main ~ songs:', songs);
+  let songUL = document
+    .querySelector('.songList')
+    .getElementsByTagName('ul')[0];
+  for (const song of songs) {
+    songUL.innerHTML = songUL.innerHTML + `<li> ${song.replaceAll("%20","")} </li>`;
+  }
+  console.log('🚀 ~ main ~ songUL:', songUL);
+
+  var playCurrentSong = new Audio(songs[1]);
+  // playCurrentSong.play();
+}
+
+main();
