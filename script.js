@@ -13,7 +13,13 @@ async function getAllSongs() {
   }
   return songsList;
 }
+let playCurrentSong = new Audio();
 
+const playMusic = (track) => {
+  console.log("🚀 ~ playMusic ~ track:",track)
+  playCurrentSong.src ='/music/'+track;
+  // playCurrentSong.play();
+};
 async function main() {
   const songs = await getAllSongs();
 
@@ -36,10 +42,23 @@ async function main() {
     </div>
    </li>`;
   }
-  console.log('🚀 ~ main ~ songUL:', songUL);
+  // console.log('🚀 ~ main ~ songUL:', songUL);
+  console.log(
+    "🚀 ~ Array.from ~ document.querySelectorAll('.songList'):",
+    document.querySelectorAll('.songList')
+  );
+  let musicToPlay = '';
+  Array.from(
+    document.querySelector('.songList').getElementsByTagName('li')
+  ).forEach((e) => {
+    e.addEventListener('click', (element) => {
+      musicToPlay = e.querySelector('.info').firstElementChild.innerHTML.trim();
+      console.log('🚀 ~ e.addEventListener ~ musicToPlay:', musicToPlay);
+      playMusic(musicToPlay.trim())
 
-  var playCurrentSong = new Audio(songs[1]);
-  // playCurrentSong.play();
+    });
+    // playCurrentSong.play(musicToPlay);
+  });
 }
 
 main();
