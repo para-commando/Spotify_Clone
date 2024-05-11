@@ -16,9 +16,14 @@ async function getAllSongs() {
 let playCurrentSong = new Audio();
 
 const playMusic = (track) => {
-  console.log("🚀 ~ playMusic ~ track:",track)
-  playCurrentSong.src ='/music/'+track;
-  // playCurrentSong.play();
+  console.log('🚀 ~ playMusic ~ track:', track);
+  playCurrentSong.src = '/music/' + track;
+  playCurrentSong.play();
+  play.src = 'pause.svg';
+  document.querySelector(".songinfo").innerHTML=track;
+  document.querySelector(".songtime").innerHTML="00:00 / 00:00";
+
+return
 };
 async function main() {
   const songs = await getAllSongs();
@@ -54,10 +59,19 @@ async function main() {
     e.addEventListener('click', (element) => {
       musicToPlay = e.querySelector('.info').firstElementChild.innerHTML.trim();
       console.log('🚀 ~ e.addEventListener ~ musicToPlay:', musicToPlay);
-      playMusic(musicToPlay.trim())
-
+      playMusic(musicToPlay.trim());
     });
-    // playCurrentSong.play(musicToPlay);
+  });
+  play.addEventListener('click', (element) => {
+    console.log('🚀 ~ play.addEventListener ~ element:', element);
+
+    if (playCurrentSong.paused) {
+      playCurrentSong.play();
+      play.src = 'pause.svg';
+    } else {
+      playCurrentSong.pause();
+      play.src = 'play.svg';
+    }
   });
 }
 
