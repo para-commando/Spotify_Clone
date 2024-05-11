@@ -175,7 +175,7 @@ body {
     padding: 12px;
     background-color: #dad5d5;
     border-radius: 10px;
-    width: 70vw;
+    width: 68vw;
     height: 40px;
     filter: invert(1)
 }
@@ -232,13 +232,15 @@ body {
 
 .seekbar {
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     height: 2px;
     border: 1px solid black;
-    width: 98%;
+    width: 97%;
     background-color: black;
     border-radius: 10px;
-    margin:6px
+    margin:6px;
+    cursor: pointer;
+
 }
 
 .circle {
@@ -249,10 +251,53 @@ body {
     position: relative;
     cursor: pointer;
     bottom: 6px;
-    left: 10%;
+    left: 0%;
     transition: left 0.5s;
 }
 
 .songbuttons img{
     cursor: pointer;
+}
+
+
+.abovebar{
+    display: flex;
+    justify-content: space-between;
+}
+/* selecting multiple classes at once using comma */
+.songinfo, .songtime{
+    /* since invert class is applied we are giving color as black to show it in screen as white */
+    color: black;
+    padding:0 12px;
+}
+
+.hamburger{
+    display: none;
+}
+
+.hamburgercontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:14px
+}
+
+@media (max-width: 1400px){
+.left{
+    background-color: red;
+    position: absolute;
+    left: -100%;
+    transition: all 0.3s;
+    z-index: 1;
+    width: 233px;
+}
+.right{
+    width: 100vw;
+}
+.playbar{
+    width: 95vw;
+}
+.hamburger{
+    display: inline;
+}
 }

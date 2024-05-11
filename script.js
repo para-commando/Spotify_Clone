@@ -15,19 +15,33 @@ async function getAllSongs() {
 }
 let playCurrentSong = new Audio();
 
-const playMusic = (track) => {
+const playMusic = (track, pause = false) => {
   console.log('🚀 ~ playMusic ~ track:', track);
   playCurrentSong.src = '/music/' + track;
-  playCurrentSong.play();
-  play.src = 'pause.svg';
-  document.querySelector(".songinfo").innerHTML=track;
-  document.querySelector(".songtime").innerHTML="00:00 / 00:00";
+  let aa = 'pause.svg';
 
-return
+  if (!pause) {
+    playCurrentSong.play();
+    aa = 'play.svg';
+  }
+
+  play.src = aa;
+  document.querySelector('.songinfo').innerHTML = decodeURI(track);
+  document.querySelector('.songtime').innerHTML = '00:00 / 00:00';
+
+  return;
 };
+
+function makeDoubleDigit(str) {
+  if (str.length === 1) {
+    return `0${str}`;
+  }
+  return str;
+}
+
 async function main() {
   const songs = await getAllSongs();
-
+  playMusic(songs[0], true);
   console.log('🚀 ~ main ~ songs:', songs);
   let songUL = document
     .querySelector('.songList')
@@ -67,11 +81,43 @@ async function main() {
 
     if (playCurrentSong.paused) {
       playCurrentSong.play();
-      play.src = 'pause.svg';
+      play.src = 'play.svg';
     } else {
       playCurrentSong.pause();
-      play.src = 'play.svg';
+      play.src = 'pause.svg';
     }
+  });
+
+  playCurrentSong.addEventListener('timeupdate', () => {
+    let tt = `${Math.round(playCurrentSong.currentTime) % 60}`.padStart(2, '0');
+    let mm = `${Math.floor(
+      Math.round(playCurrentSong.currentTime) / 60
+    )}`.padStart(2, '0');
+
+    let totalMM = `${Math.round(playCurrentSong.duration / 60)}`.padStart(
+      2,
+      '0'
+    );
+
+    let totaltt = `${Math.round(playCurrentSong.duration % 60)}`.padStart(
+      2,
+      '0'
+    );
+
+    document.querySelector(
+      '.songtime'
+    ).innerHTML = `${mm}:${tt} / ${totalMM}:${totaltt}`;
+
+    document.querySelector('.circle').style.left =
+      (playCurrentSong.currentTime / playCurrentSong.duration) * 100 + '%';
+  });
+  document.querySelector('.seekbar').addEventListener('click', (element) => {
+    console.log('🚀 ~ play.addEventListener ~ element:1111111111111', element);
+    // offsetX gives us the current width covered on the seebar and the target.getBoundingClientRect().width gives us the total width of the seekbar depending on the screen width so by dividing those we get % value of the circle to be moved
+    let percent =
+      (element.offsetX / element.target.getBoundingClientRect().width) * 100;
+    document.querySelector('.circle').style.left = percent + '%';
+    playCurrentSong.currentTime = ((playCurrentSong.duration)*percent)/100;
   });
 }
 
