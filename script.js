@@ -1,3 +1,4 @@
+let songs;
 async function getAllSongs() {
   let response = await fetch('http://127.0.0.1:5500/music/');
   response = await response.text();
@@ -32,15 +33,8 @@ const playMusic = (track, pause = false) => {
   return;
 };
 
-function makeDoubleDigit(str) {
-  if (str.length === 1) {
-    return `0${str}`;
-  }
-  return str;
-}
-
 async function main() {
-  const songs = await getAllSongs();
+  songs = await getAllSongs();
   playMusic(songs[0], true);
   console.log('🚀 ~ main ~ songs:', songs);
   let songUL = document
@@ -120,19 +114,39 @@ async function main() {
     playCurrentSong.currentTime = (playCurrentSong.duration * percent) / 100;
   });
 
-  document
-    .querySelector('.hamburger')
-    .addEventListener('click', (element) => {
- 
-      document.querySelector('.left').style.left = 0;
-    });
-    document
-    .querySelector('.close')
-    .addEventListener('click', (element) => {
- 
-      document.querySelector('.left').style.left = '-120%';
-    });
+  document.querySelector('.hamburger').addEventListener('click', (element) => {
+    document.querySelector('.left').style.left = 0;
+  });
+  document.querySelector('.close').addEventListener('click', (element) => {
+    document.querySelector('.left').style.left = '-120%';
+  });
 
+  previous.addEventListener('click', (element) => {
+    const currentSongName = playCurrentSong.src.split('/music/')[1];
+
+    console.log('songs', songs);
+    const currentSongIndex = songs.indexOf(currentSongName);
+    console.log(
+      '🚀 ~ previous.addEventListener ~ currentSongIndex:',
+      currentSongIndex
+    );
+    if (currentSongIndex > 0) {
+      playMusic(songs[currentSongIndex - 1]);
+    }
+  });
+  next.addEventListener('click', (element) => {
+    const currentSongName = playCurrentSong.src.split('/music/')[1];
+
+    console.log('songs', songs);
+    const currentSongIndex = songs.indexOf(currentSongName);
+    console.log(
+      '🚀 ~ previous.addEventListener ~ currentSongIndex:',
+      currentSongIndex
+    );
+    if (songs?.length - currentSongIndex - 1> 0) {
+      playMusic(songs[currentSongIndex + 1]);
+    }
+  });
 }
 
 main();

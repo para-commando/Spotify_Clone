@@ -89,7 +89,9 @@ body {
 .spotifyPlaylists {
     padding: 16px
 }
-
+.spotifyPlaylists h1{
+    padding: 16px
+}
 .cardContainer {
     display: flex;
     gap: 10px;
@@ -229,7 +231,9 @@ body {
     font-size: 14px;
     width: 344PX;
 }
-
+.info  div{
+    word-break: break-all;
+}
 .seekbar {
     position: absolute;
     bottom: 4px;
@@ -271,6 +275,7 @@ body {
     /* since invert class is applied we are giving color as black to show it in screen as white */
     color: black;
     padding: 0 12px;
+    width: 250px;
 }
 
 .hamburger {
@@ -296,10 +301,12 @@ body {
         z-index: 1;
         width: 370px;
         background-color: black;
+        padding:0;
     }
 
     .right {
         width: 100vw;
+        margin: 0
     }
 
 
@@ -320,8 +327,9 @@ body {
 
 
     .playbar {
-        font-size: 12px;
-        width: calc(100vw - 60px);
+        font-size: 15px;
+        width: calc(100vw - 120px);
+        height: 110px;
 
     }
 
@@ -331,13 +339,22 @@ body {
 
     .seekbar {
 
-        width: calc(100vw - 70px);
+        width: calc(100vw - 115px);
 
     }
-    .cardContainer{
+
+    .cardContainer {
         margin: 0;
         justify-content: center;
 
     }
 
+    .abovebar {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px
+    }
+    .songinfo, .songtime{
+        width: auto;
+    }
 }
