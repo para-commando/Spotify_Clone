@@ -95,7 +95,7 @@ body {
     gap: 10px;
     flex-wrap: wrap;
     margin: 30px;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 70vh;
 }
 
@@ -238,7 +238,7 @@ body {
     width: 97%;
     background-color: black;
     border-radius: 10px;
-    margin:6px;
+    margin: 6px;
     cursor: pointer;
 
 }
@@ -255,49 +255,89 @@ body {
     transition: left 0.5s;
 }
 
-.songbuttons img{
+.songbuttons img {
     cursor: pointer;
 }
 
 
-.abovebar{
+.abovebar {
     display: flex;
     justify-content: space-between;
 }
+
 /* selecting multiple classes at once using comma */
-.songinfo, .songtime{
+.songinfo,
+.songtime {
     /* since invert class is applied we are giving color as black to show it in screen as white */
     color: black;
-    padding:0 12px;
+    padding: 0 12px;
 }
 
-.hamburger{
+.hamburger {
     display: none;
 }
 
-.hamburgercontainer{
+.left .close {
+    display: none;
+}
+
+.hamburgercontainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:14px
+    gap: 14px
 }
 
-@media (max-width: 1400px){
-.left{
-    background-color: red;
-    position: absolute;
-    left: -100%;
-    transition: all 0.3s;
-    z-index: 1;
-    width: 233px;
-}
-.right{
-    width: 100vw;
-}
-.playbar{
-    width: 95vw;
-}
-.hamburger{
-    display: inline;
-}
+@media (max-width: 1400px) {
+    .left {
+        position: absolute;
+        left: -120%;
+        transition: all 0.3s;
+        z-index: 1;
+        width: 370px;
+        background-color: black;
+    }
+
+    .right {
+        width: 100vw;
+    }
+
+
+
+    .hamburger {
+        display: block;
+    }
+
+    .left .close {
+        display: block;
+        position: absolute;
+        right: 31px;
+        top: 25px;
+        width: 29px;
+
+    }
+
+
+
+    .playbar {
+        font-size: 12px;
+        width: calc(100vw - 60px);
+
+    }
+
+    .card {
+        width: 90vw;
+    }
+
+    .seekbar {
+
+        width: calc(100vw - 70px);
+
+    }
+    .cardContainer{
+        margin: 0;
+        justify-content: center;
+
+    }
+
 }

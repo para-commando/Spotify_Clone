@@ -117,8 +117,22 @@ async function main() {
     let percent =
       (element.offsetX / element.target.getBoundingClientRect().width) * 100;
     document.querySelector('.circle').style.left = percent + '%';
-    playCurrentSong.currentTime = ((playCurrentSong.duration)*percent)/100;
+    playCurrentSong.currentTime = (playCurrentSong.duration * percent) / 100;
   });
+
+  document
+    .querySelector('.hamburger')
+    .addEventListener('click', (element) => {
+ 
+      document.querySelector('.left').style.left = 0;
+    });
+    document
+    .querySelector('.close')
+    .addEventListener('click', (element) => {
+ 
+      document.querySelector('.left').style.left = '-120%';
+    });
+
 }
 
 main();
