@@ -1,6 +1,8 @@
 let songs;
-async function getAllSongs() {
-  let response = await fetch('http://127.0.0.1:5500/music/');
+let folderName = 'music/ncs';
+async function getAllSongs(folder) {
+  console.log('🚀 ~ getAllSongs ~ folder:', folder);
+  let response = await fetch(`http://127.0.0.1:5500/${folder}/`);
   response = await response.text();
   let div = document.createElement('div');
   div.innerHTML = response;
@@ -9,15 +11,18 @@ async function getAllSongs() {
   for (let index = 0; index < aTags?.length; index++) {
     const element = aTags[index];
     if (element.href.endsWith('.mp3')) {
-      songsList.push(element.href.split('/music/')[1]);
+      songsList.push(element.href.split(`/${folder}/`)[1]);
     }
   }
   return songsList;
 }
 let playCurrentSong = new Audio();
 
-const playMusic = (track, pause = false) => {
-  playCurrentSong.src = '/music/' + track;
+const playMusic = (track, folder, pause = false) => {
+  console.log('🚀 ~ playMusic ~ folder:', folder);
+  console.log('🚀 ~ playMusic ~ track:', track);
+
+  playCurrentSong.src = `/${folder}/` + track;
   let aa = 'pause.svg';
 
   if (!pause) {
@@ -33,8 +38,9 @@ const playMusic = (track, pause = false) => {
 };
 
 async function main() {
-  songs = await getAllSongs();
-  playMusic(songs[0], true);
+  songs = await getAllSongs(folderName);
+  console.log('🚀 ~ main ~ songs:', songs);
+  playMusic(songs[0], folderName, true);
   let songUL = document
     .querySelector('.songList')
     .getElementsByTagName('ul')[0];
@@ -60,7 +66,7 @@ async function main() {
   ).forEach((e) => {
     e.addEventListener('click', (element) => {
       musicToPlay = e.querySelector('.info').firstElementChild.innerHTML.trim();
-      playMusic(musicToPlay.trim());
+      playMusic(musicToPlay.trim(), folderName);
     });
   });
   play.addEventListener('click', (element) => {
@@ -112,21 +118,37 @@ async function main() {
   });
 
   previous.addEventListener('click', (element) => {
-    const currentSongName = playCurrentSong.src.split('/music/')[1];
+    const currentSongName = playCurrentSong.src.split(folderName + '/')[1];
+    console.log(
+      '🚀 ~ previous.addEventListener ~ currentSongName:',
+      currentSongName
+    );
 
     const currentSongIndex = songs.indexOf(currentSongName);
+    console.log(
+      '🚀 ~ previous.addEventListener ~ currentSongIndex:',
+      currentSongIndex
+    );
 
     if (currentSongIndex > 0) {
-      playMusic(songs[currentSongIndex - 1]);
+      playMusic(songs[currentSongIndex - 1], folderName);
     }
   });
   next.addEventListener('click', (element) => {
-    const currentSongName = playCurrentSong.src.split('/music/')[1];
+    const currentSongName = playCurrentSong.src.split(folderName + '/')[1];
+    console.log(
+      '🚀 ~ next.addEventListener ~ currentSongName:',
+      currentSongName
+    );
 
     const currentSongIndex = songs.indexOf(currentSongName);
+    console.log(
+      '🚀 ~ next.addEventListener ~ currentSongIndex:',
+      currentSongIndex
+    );
 
     if (songs?.length - currentSongIndex - 1 > 0) {
-      playMusic(songs[currentSongIndex + 1]);
+      playMusic(songs[currentSongIndex + 1], folderName);
     }
   });
 
