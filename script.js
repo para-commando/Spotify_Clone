@@ -17,7 +17,6 @@ async function getAllSongs() {
 let playCurrentSong = new Audio();
 
 const playMusic = (track, pause = false) => {
-  console.log('🚀 ~ playMusic ~ track:', track);
   playCurrentSong.src = '/music/' + track;
   let aa = 'pause.svg';
 
@@ -36,7 +35,6 @@ const playMusic = (track, pause = false) => {
 async function main() {
   songs = await getAllSongs();
   playMusic(songs[0], true);
-  console.log('🚀 ~ main ~ songs:', songs);
   let songUL = document
     .querySelector('.songList')
     .getElementsByTagName('ul')[0];
@@ -55,24 +53,17 @@ async function main() {
     </div>
    </li>`;
   }
-  // console.log('🚀 ~ main ~ songUL:', songUL);
-  console.log(
-    "🚀 ~ Array.from ~ document.querySelectorAll('.songList'):",
-    document.querySelectorAll('.songList')
-  );
+
   let musicToPlay = '';
   Array.from(
     document.querySelector('.songList').getElementsByTagName('li')
   ).forEach((e) => {
     e.addEventListener('click', (element) => {
       musicToPlay = e.querySelector('.info').firstElementChild.innerHTML.trim();
-      console.log('🚀 ~ e.addEventListener ~ musicToPlay:', musicToPlay);
       playMusic(musicToPlay.trim());
     });
   });
   play.addEventListener('click', (element) => {
-    console.log('🚀 ~ play.addEventListener ~ element:', element);
-
     if (playCurrentSong.paused) {
       playCurrentSong.play();
       play.src = 'play.svg';
@@ -106,7 +97,6 @@ async function main() {
       (playCurrentSong.currentTime / playCurrentSong.duration) * 100 + '%';
   });
   document.querySelector('.seekbar').addEventListener('click', (element) => {
-    console.log('🚀 ~ play.addEventListener ~ element:1111111111111', element);
     // offsetX gives us the current width covered on the seebar and the target.getBoundingClientRect().width gives us the total width of the seekbar depending on the screen width so by dividing those we get % value of the circle to be moved
     let percent =
       (element.offsetX / element.target.getBoundingClientRect().width) * 100;
@@ -124,12 +114,8 @@ async function main() {
   previous.addEventListener('click', (element) => {
     const currentSongName = playCurrentSong.src.split('/music/')[1];
 
-    console.log('songs', songs);
     const currentSongIndex = songs.indexOf(currentSongName);
-    console.log(
-      '🚀 ~ previous.addEventListener ~ currentSongIndex:',
-      currentSongIndex
-    );
+
     if (currentSongIndex > 0) {
       playMusic(songs[currentSongIndex - 1]);
     }
@@ -137,16 +123,19 @@ async function main() {
   next.addEventListener('click', (element) => {
     const currentSongName = playCurrentSong.src.split('/music/')[1];
 
-    console.log('songs', songs);
     const currentSongIndex = songs.indexOf(currentSongName);
-    console.log(
-      '🚀 ~ previous.addEventListener ~ currentSongIndex:',
-      currentSongIndex
-    );
-    if (songs?.length - currentSongIndex - 1> 0) {
+
+    if (songs?.length - currentSongIndex - 1 > 0) {
       playMusic(songs[currentSongIndex + 1]);
     }
   });
+
+  document
+    .querySelector('.range')
+    .getElementsByTagName('input')[0]
+    .addEventListener('change', (element) => {
+      playCurrentSong.volume = parseInt(element.target.value) / 100;
+    });
 }
 
 main();

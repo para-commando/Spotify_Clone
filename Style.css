@@ -89,9 +89,11 @@ body {
 .spotifyPlaylists {
     padding: 16px
 }
-.spotifyPlaylists h1{
+
+.spotifyPlaylists h1 {
     padding: 16px
 }
+
 .cardContainer {
     display: flex;
     gap: 10px;
@@ -178,7 +180,7 @@ body {
     background-color: #dad5d5;
     border-radius: 10px;
     width: 68vw;
-    height: 40px;
+    height: 50px;
     filter: invert(1)
 }
 
@@ -231,9 +233,11 @@ body {
     font-size: 14px;
     width: 344PX;
 }
-.info  div{
+
+.info div {
     word-break: break-all;
 }
+
 .seekbar {
     position: absolute;
     bottom: 4px;
@@ -263,23 +267,38 @@ body {
     cursor: pointer;
 }
 
-
+.range > input{
+    height: 5px;
+    width: 100px;
+    
+}
 .abovebar {
     display: flex;
     justify-content: space-between;
 }
 
 /* selecting multiple classes at once using comma */
-.songinfo,
-.songtime {
+.songinfo {
     /* since invert class is applied we are giving color as black to show it in screen as white */
     color: black;
     padding: 0 12px;
     width: 250px;
 }
 
+.songtime {
+    width: 125px;
+    color: black;
+    padding: 0 12px;
+}
+
 .hamburger {
     display: none;
+}
+
+.timevol {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .left .close {
@@ -292,8 +311,13 @@ body {
     align-items: center;
     gap: 14px
 }
-
-@media (max-width: 1400px) {
+.volume{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:12px
+}
+@media (max-width: 1200px) {
     .left {
         position: absolute;
         left: -120%;
@@ -301,7 +325,7 @@ body {
         z-index: 1;
         width: 370px;
         background-color: black;
-        padding:0;
+        padding: 0;
     }
 
     .right {
@@ -329,12 +353,12 @@ body {
     .playbar {
         font-size: 15px;
         width: calc(100vw - 120px);
-        height: 110px;
+        height: 115px;
 
     }
 
     .card {
-        width: 90vw;
+        width: 44vw;
     }
 
     .seekbar {
@@ -352,9 +376,23 @@ body {
     .abovebar {
         flex-direction: column;
         align-items: center;
-        gap: 15px
+        gap: 10px
     }
-    .songinfo, .songtime{
+
+    .songinfo,
+    .songtime {
         width: auto;
     }
+
+    .timevol{
+        gap: 10px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+.card{
+width: 80vw;
+}
 }
