@@ -76,7 +76,6 @@ async function displayAlbums() {
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
 
-
     if (element.href.includes('/music/')) {
       let folder = element.href.split('/music/')[1];
       let response = await fetch(
@@ -127,6 +126,36 @@ async function displayAlbums() {
       songs = await getAllSongs(folderName);
     });
   });
+
+  previous.addEventListener('click', (element) => {
+    console.log('🚀 ~ previous.addEventListener ~ element:', element);
+    const currentSongName = playCurrentSong.src.split(folderName + '/')[1];
+
+    const currentSongIndex = songs.indexOf(currentSongName);
+
+    if (currentSongIndex > 0) {
+      playMusic(songs[currentSongIndex - 1], folderName);
+    }
+  });
+  next.addEventListener('click', (element) => {
+    console.log('🚀 ~ next.addEventListener ~ element:', element);
+    const currentSongName = playCurrentSong.src.split(folderName + '/')[1];
+    console.log(
+      '🚀 ~ next.addEventListener ~ currentSongName:',
+      currentSongName
+    );
+
+    const currentSongIndex = songs.indexOf(currentSongName);
+    console.log(
+      '🚀 ~ next.addEventListener ~ currentSongIndex:',
+      currentSongIndex
+    );
+
+    if (songs?.length - currentSongIndex - 1 > 0) {
+      playMusic(songs[currentSongIndex + 1], folderName);
+    }
+  });
+
   return;
 }
 async function main() {
@@ -134,6 +163,8 @@ async function main() {
   await displayAlbums();
   // creating event listeners to play current/previous/next songs
   play.addEventListener('click', (element) => {
+    console.log('🚀 ~ play.addEventListener ~ element:', element);
+
     if (playCurrentSong.paused) {
       playCurrentSong.play();
       play.src = 'play.svg';
@@ -181,41 +212,40 @@ async function main() {
     document.querySelector('.left').style.left = '-120%';
   });
 
-  previous.addEventListener('click', (element) => {
-    console.log("🚀 ~ previous.addEventListener ~ element:", element)
-    const currentSongName = playCurrentSong.src.split(folderName + '/')[1];
-
-    const currentSongIndex = songs.indexOf(currentSongName);
-
-    if (currentSongIndex > 0) {
-      playMusic(songs[currentSongIndex - 1], folderName);
-    }
-  });
-  next.addEventListener('click', (element) => {
-    console.log("🚀 ~ next.addEventListener ~ element:", element)
-    const currentSongName = playCurrentSong.src.split(folderName + '/')[1];
-    console.log(
-      '🚀 ~ next.addEventListener ~ currentSongName:',
-      currentSongName
-    );
-
-    const currentSongIndex = songs.indexOf(currentSongName);
-    console.log(
-      '🚀 ~ next.addEventListener ~ currentSongIndex:',
-      currentSongIndex
-    );
-
-    if (songs?.length - currentSongIndex - 1 > 0) {
-      playMusic(songs[currentSongIndex + 1], folderName);
-    }
-  });
-
   // event listener to listen for the volume range changes
   document
     .querySelector('.range')
     .getElementsByTagName('input')[0]
     .addEventListener('change', (element) => {
+      console.log(
+        '🚀 ~ .addEventListener ~  element.target.value:',
+        element.target.value
+      );
       playCurrentSong.volume = parseInt(element.target.value) / 100;
     });
+  let prevVol = 0;
+  let preVolValue = 0;
+  volumeIcon.addEventListener('click', (element) => {
+    if (volumeIcon.src.includes('volume.svg')) {
+      prevVol = playCurrentSong.volume;
+      playCurrentSong.volume = 0;
+      const volumeRangeVal = document
+        .querySelector('.range')
+        .getElementsByTagName('input')[0];
+
+      preVolValue = volumeRangeVal.value;
+      volumeRangeVal.value = 0;
+
+      volumeIcon.src = 'volumeMute.svg';
+    } else if (volumeIcon.src.includes('volumeMute.svg')) {
+      volumeIcon.src = 'volume.svg';
+      const volumeRangeVal = document
+        .querySelector('.range')
+        .getElementsByTagName('input')[0];
+
+      volumeRangeVal.value = preVolValue;
+      playCurrentSong.volume = prevVol;
+    }
+  });
 }
 main();

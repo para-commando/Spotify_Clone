@@ -324,7 +324,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:12px
+    gap:12px;
+    cursor: pointer;
+}
+
+.range input{
+    cursor: pointer;
 }
 @media (max-width: 1200px) {
     .left {
