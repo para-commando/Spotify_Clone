@@ -379,10 +379,11 @@ body {
         height: 130px;
 
     }
-
-    .card {
-        width: auto;
+    .card img {
+        width: 100%;
+        object-fit: contain;
     }
+    
 
     .seekbar {
 
@@ -425,12 +426,33 @@ body {
 }
 
 
-
-
-
 @media (max-width: 500px) {
-
     .card {
-        width: 30vh;
+        width: 100%;
     }
+
+    .header>* {
+        padding: 2px;
+    }
+
+    .buttons>* {
+        margin: 0 6px;
+    }
+
+    .header{
+        padding: 7px;
+    }
+
+    .spotifyPlaylists h1 {
+        padding: 4px;
+    }
+
+    .library{
+        height: 85vh;
+    }
+
+    .left{ 
+        width: 100vw;
+    }
+ 
 }

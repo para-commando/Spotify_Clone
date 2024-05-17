@@ -2,7 +2,7 @@ let songs;
 let folderName = '';
 let songsList = '';
 async function getAllSongs(folder) {
-  let response = await fetch(`http://127.0.0.1:5500/${folder}/`);
+  let response = await fetch(`/${folder}/`);
   response = await response.text();
   let div = document.createElement('div');
   div.innerHTML = response;
@@ -66,7 +66,7 @@ const playMusic = (track, folder, pause = false) => {
   return;
 };
 async function displayAlbums() {
-  let response = await fetch(`http://127.0.0.1:5500/music/`);
+  let response = await fetch(`/music/`);
   response = await response.text();
   let div = document.createElement('div');
   div.innerHTML = response;
@@ -76,11 +76,12 @@ async function displayAlbums() {
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
 
-    if (element.href.includes('/music/')) {
+    if (
+      element.href.includes('/music/') &&
+      !element.href.includes('.htaccess')
+    ) {
       let folder = element.href.split('/music/')[1];
-      let response = await fetch(
-        `http://127.0.0.1:5500/music/${folder}/info.json`
-      );
+      let response = await fetch(`/music/${folder}/info.json`);
       response = await response.json();
       let cardContainer = document.querySelector('.cardContainer');
       cardContainer.innerHTML =
