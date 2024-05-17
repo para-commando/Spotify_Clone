@@ -30,6 +30,7 @@ Here are few glimpses of the desgin
 
 ### Mobile phone view with songs section displayed under hamburger menu functionality
 <br>
+
 ![image](https://github.com/para-commando/Spotify_Clone/assets/123434846/7917ec39-baa0-4626-878e-03d4723c1d49)
 
 <br>
