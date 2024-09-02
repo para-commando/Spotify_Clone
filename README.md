@@ -1,7 +1,7 @@
 # Spotify - Web Player Clone
 ![Fix-Spotify-Problems](https://github.com/para-commando/Spotify_Clone/assets/123434846/ef9ebf3b-754c-4447-8019-7987e1057f89)
 
-**Hi👋 there!** I hope **you are** having an **amazing** day 😃🌻. Please *allow me* to brief you on what this repository is holding, this is a **Responsive Frontend project** based on **HTML and CSS and JavaScript** which demonstrates the user interface **clone** of one of the most **famous digital music service** that gives you access to millions of songs. **Spotify**.
+**Hi👋 there!** I hope **you are** having an **amazing** day 😃🌻. Please *allow me* to brief you on what this repository is holding, this is a **Responsive Frontend project** based on **HTML and CSS and JavaScript** which demonstrates the user interface **clone** of one of the most **famous digital music service** that gives you access to millions of songs, **Spotify**.
 This project will allow users to load or their album of choice and navigate to the songs before or after the current playing songs, upon clicking the playlist/album its first song is played. Even the volume button is functional with an option to mute and unmute the audio along with the option to seek the playing music
 Here are few glimpses of the desgin
 <br>
